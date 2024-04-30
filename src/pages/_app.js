@@ -6,7 +6,7 @@ export default function App({ Component, pageProps }) {
   return (
     <ChakraProvider>
       <SidebarProvider>
-        <Component {...pageProps} />;
+        <Component {...pageProps} />
       </SidebarProvider>
     </ChakraProvider>
   ) 
