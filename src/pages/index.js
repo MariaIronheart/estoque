@@ -1,17 +1,4 @@
-import {
-  Box,
-  Button,
-  Divider,
-  Flex,
-  Input,
-  SimpleGrid,
-  Table,
-  Tbody,
-  Td,
-  Text,
-  Th,
-  Thead,
-  Tr,
+import {Box, Button, Divider, Flex, Input, SimpleGrid, Table, Tbody, Td, Text, Th, Thead, Tr,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import Header from "../components/Header";
@@ -90,7 +77,7 @@ const Produtos = () => {
     <Flex h="100vh" flexDirection="column">
       <Header />
 
-      <Flex w="100%" my="6" maxW={1120} mx="auto" px="6" h="100vh">
+      <Flex w="100%" my="6" maxW={1500} mx="auto" px="6" h="100vh">
         <Sidebar />
 
         <Box w="100%">
@@ -118,7 +105,7 @@ const Produtos = () => {
               <Tbody>
                 {listProducts.map((item, i) => (
                   <Tr key={i}>
-                    <Td color="gray.500">{item.name}</Td>
+                    <Td>{item.name}</Td>
                     <Td textAlign="end">
                       <Button
                         p="2"

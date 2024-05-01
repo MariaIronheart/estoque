@@ -10,19 +10,19 @@ const SidebarNav = () => {
     return (
     <Stack spacing="6">
         <Stack>
-            <Text fontSize="xs" fontWeight="bold" color="gray.400">
+            <Text fontSize="xs" fontWeight="bold" color="teal.500">
                 CADASTRO
             </Text>
             <Stack>
                 <ChakraLink
-                _hover={{ bg: "gray.100"}}
+                _hover={{ bg: "teal.100"}}
                 px="4"
                 py="2"
                 borderRadius={5}
-                bg={asPath === "/" ? "gray.200" : ""}
+                bg={asPath === "/" ? "teal.200" : ""}
                 >
                 <Link href="/">
-                <Text fontSize="md" fontWeight="medium" color="gray.500">
+                <Text fontSize="md" fontWeight="medium" color="gray.600">
                     PRODUTOS
                 </Text>
                 </Link>
@@ -30,45 +30,45 @@ const SidebarNav = () => {
             </Stack>
         </Stack>
         <Stack>
-        <Text fontSize="xs" fontWeight="bold" color="gray.400">
+        <Text fontSize="xs" fontWeight="bold" color="teal.500">
                 ESTOQUE
             </Text>
             <Stack>
             <ChakraLink
-                _hover={{ bg: "gray.100"}}
+                _hover={{ bg: "teal.100"}}
                 px="4"
                 py="2"
                 borderRadius={5}
-                bg={asPath === "/balance" ? "gray.200" : ""}
+                bg={asPath === "/balance" ? "teal.200" : ""}
                 >
                 <Link href="/balance">
-                <Text fontSize="md" fontWeight="medium" color="gray.500">
+                <Text fontSize="md" fontWeight="medium" color="gray.600">
                     SALDO
                 </Text>
                 </Link>
                 </ChakraLink>
                 <ChakraLink
-                _hover={{ bg: "gray.100"}}
+                _hover={{ bg: "teal.100"}}
                 px="4"
                 py="2"
                 borderRadius={5}
-                bg={asPath === "/stockEntries" ? "gray.200" : ""}
+                bg={asPath === "/stockEntries" ? "teal.200" : ""}
                 >
                 <Link href="/stockEntries">
-                <Text fontSize="md" fontWeight="medium" color="gray.500">
+                <Text fontSize="md" fontWeight="medium" color="gray.600">
                     ENTRADAS
                 </Text>
                 </Link>
                 </ChakraLink>
                 <ChakraLink
-                _hover={{ bg: "gray.100"}}
+                _hover={{ bg: "teal.300"}}
                 px="4"
                 py="2"
                 borderRadius={5}
-                bg={asPath === "/stockOutputs" ? "gray.200" : ""}
+                bg={asPath === "/stockOutputs" ? "teal.200" : ""}
                 >
                 <Link href="/stockOutputs">
-                <Text fontSize="md" fontWeight="medium" color="gray.500">
+                <Text fontSize="md" fontWeight="medium" color="gray.600">
                     SAÍDAS
                 </Text>
                 </Link>

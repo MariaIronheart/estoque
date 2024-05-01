@@ -21,7 +21,7 @@ const Header = () => {
         py="2"
         align="center"
         boxShadow="0 1px 0 #ccc"
-        color="gray.500"
+        color="gray.600"
         fontWeight="bold"
         >
 
