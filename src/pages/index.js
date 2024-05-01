@@ -7,6 +7,7 @@ import Sidebar from "../components/Sidebar";
 const Produtos = () => {
   const [name, setName] = useState("");
   const [listProducts, setListProducts] = useState([]);
+  const [serie, setSerie] = useState ("");
 
   useEffect(() => {
     const db_products = localStorage.getItem("db_products")
@@ -28,17 +29,18 @@ const Produtos = () => {
     if (listProducts && listProducts.length) {
       localStorage.setItem(
         "db_products",
-        JSON.stringify([...listProducts, { id, name }])
+        JSON.stringify([...listProducts, { id, name ,serie }])
       );
 
-      setListProducts([...listProducts, { id, name }]);
+      setListProducts([...listProducts, { id, name , serie}]);
     } else {
-      localStorage.setItem("db_products", JSON.stringify([{ id, name }]));
+      localStorage.setItem("db_products", JSON.stringify([{ id, name , serie}]));
 
-      setListProducts([{ id, name }]);
+      setListProducts([{ id, name , serie}]);
     }
 
     setName("");
+    setSerie("");
   };
 
   const verifyProductName = () => {
@@ -87,6 +89,12 @@ const Produtos = () => {
               onChange={(e) => setName(e.target.value)}
               placeholder="Nome do produto"
             />
+            <Input
+                placeholder="Nº de série"
+                type="string"
+                value={serie}
+                onChange={(e) => setSerie(e.target.value)}
+              />
             <Button w="40" onClick={handleNewProduct}>
               CADASTRAR
             </Button>
@@ -99,6 +107,9 @@ const Produtos = () => {
                   <Th fontWeight="bold" fontSize="14px">
                     Nome
                   </Th>
+                  <Th fontWeight="bold" fontSize="14px">
+                      Nº série
+                  </Th>
                   <Th></Th>
                 </Tr>
               </Thead>
@@ -106,6 +117,7 @@ const Produtos = () => {
                 {listProducts.map((item, i) => (
                   <Tr key={i}>
                     <Td>{item.name}</Td>
+                    <Td>{item.serie}</Td>
                     <Td textAlign="end">
                       <Button
                         p="2"

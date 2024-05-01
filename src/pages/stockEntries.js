@@ -10,7 +10,8 @@ import { Box, Button, Flex, Input, Select, SimpleGrid, Table, Tbody, Td, Th, The
     const [listStockEntries, setStockEntries] = useState([]);
     const [listProducts, setListProducts] = useState([]);
     const [data, setData] = useState("");
-  
+    
+    
     useEffect(() => {
       const db_stock_entries = localStorage.getItem("db_stock_entries")
         ? JSON.parse(localStorage.getItem("db_stock_entries"))
@@ -35,7 +36,7 @@ import { Box, Button, Flex, Input, Select, SimpleGrid, Table, Tbody, Td, Th, The
       if (listStockEntries && listStockEntries.length) {
         localStorage.setItem(
           "db_stock_entries",
-          JSON.stringify([...listStockEntries, { id, amount, product_id , data}])
+          JSON.stringify([...listStockEntries, { id, amount, product_id , data }])
         );
   
         setStockEntries([...listStockEntries, { id, amount, product_id , data}]);
@@ -50,6 +51,8 @@ import { Box, Button, Flex, Input, Select, SimpleGrid, Table, Tbody, Td, Th, The
   
       setAmount("");
       setProduct_id("0");
+      setData("");
+      
 
     };
   
@@ -117,6 +120,9 @@ import { Box, Button, Flex, Input, Select, SimpleGrid, Table, Tbody, Td, Th, The
                     <Th fontWeight="bold" fontSize="14px">
                       Data
                     </Th>
+                    <Th fontWeight="bold" fontSize="14px">
+                      Fornecedor
+                    </Th>
                     <Th></Th>
                   </Tr>
                 </Thead>
@@ -126,6 +132,7 @@ import { Box, Button, Flex, Input, Select, SimpleGrid, Table, Tbody, Td, Th, The
                       <Td>{getProductById(item.product_id)}</Td>
                       <Td>{item.amount}</Td>
                       <Td>{item.data}</Td>
+                      
                       <Td textAlign="end">
                         <Button
                           p="2"

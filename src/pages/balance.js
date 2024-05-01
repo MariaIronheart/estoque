@@ -20,6 +20,7 @@ import {
     const [listProducts, setListProducts] = useState([]);
     const [productFiltered, setProductFiltered] = useState("");
     const [cmbProducts, setCmbProducts] = useState([]);
+    
   
     const BuildBalanceArray = () => {
       const db_stock_outputs = localStorage.getItem("db_stock_outputs")
@@ -57,6 +58,7 @@ import {
   
         setListProducts(newArray);
         setCmbProducts(newArray);
+       
       });
     };
   
@@ -121,6 +123,7 @@ import {
                     <Tr key={i}>
                       <Td>{item.product_name}</Td>
                       <Td>{item.amount}</Td>
+                      <Td>{item.serie}</Td>
                     </Tr>
                   ))}
                 </Tbody>
