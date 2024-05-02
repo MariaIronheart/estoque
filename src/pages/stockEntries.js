@@ -10,6 +10,8 @@ import { Box, Button, Flex, Input, Select, SimpleGrid, Table, Tbody, Td, Th, The
     const [listStockEntries, setStockEntries] = useState([]);
     const [listProducts, setListProducts] = useState([]);
     const [data, setData] = useState("");
+    const [listFornecedor, setListFornecedor] = useState([]);
+    const [fornecedor_id, setFornecedor_id] = useState("0");
     
     
     useEffect(() => {
@@ -24,6 +26,14 @@ import { Box, Button, Flex, Input, Select, SimpleGrid, Table, Tbody, Td, Th, The
         : [];
   
       setListProducts(db_products);
+      
+      const db_fornecedor = localStorage.getItem("db_fornecedor")
+        ? JSON.parse(localStorage.getItem("db_fornecedor"))
+        : [];
+  
+      setListFornecedor(db_fornecedor);
+
+      
     }, []);
   
     const handleNewEntry = () => {
@@ -36,22 +46,23 @@ import { Box, Button, Flex, Input, Select, SimpleGrid, Table, Tbody, Td, Th, The
       if (listStockEntries && listStockEntries.length) {
         localStorage.setItem(
           "db_stock_entries",
-          JSON.stringify([...listStockEntries, { id, amount, product_id , data }])
+          JSON.stringify([...listStockEntries, { id, amount, product_id , data , fornecedor_id}])
         );
   
-        setStockEntries([...listStockEntries, { id, amount, product_id , data}]);
+        setStockEntries([...listStockEntries, { id, amount, product_id , data, fornecedor_id}]);
       } else {
         localStorage.setItem(
           "db_stock_entries",
-          JSON.stringify([{ id, amount, product_id ,data}])
+          JSON.stringify([{ id, amount, product_id ,data, fornecedor_id}])
         );
   
-        setStockEntries([{ id, amount, product_id , data}]);
+        setStockEntries([{ id, amount, product_id , data, fornecedor_id}]);
       }
-  
-      setAmount("");
+
+      setFornecedor_id("0");
       setProduct_id("0");
       setData("");
+      setAmount("");
       
 
     };
@@ -66,6 +77,10 @@ import { Box, Button, Flex, Input, Select, SimpleGrid, Table, Tbody, Td, Th, The
   
     const getProductById = (id) => {
       return listProducts.filter((item) => item.id === id)[0]?.name;
+    };
+
+    const getFornecedorById = (id) => {
+      return listFornecedor.filter((item) => item.id === id)[0]?.fornecedor;
     };
   
     return (
@@ -87,6 +102,19 @@ import { Box, Button, Flex, Input, Select, SimpleGrid, Table, Tbody, Td, Th, The
                   listProducts.map((item, i) => (
                     <option key={i} value={item.id}>
                       {item.name}
+                    </option>
+                  ))}
+              </Select>
+              <Select
+                value={fornecedor_id}
+                onChange={(e) => setFornecedor_id(e.target.value)}
+              >
+                <option value="0">Selecione um fornecedor</option>
+                {listFornecedor &&
+                  listFornecedor.length > 0 &&
+                  listFornecedor.map((item, i) => (
+                    <option key={i} value={item.id}>
+                      {item.fornecedor}
                     </option>
                   ))}
               </Select>
@@ -115,13 +143,13 @@ import { Box, Button, Flex, Input, Select, SimpleGrid, Table, Tbody, Td, Th, The
                       Nome
                     </Th>
                     <Th fontWeight="bold" fontSize="14px">
+                      Fornecedor
+                    </Th>
+                    <Th fontWeight="bold" fontSize="14px">
                       Qtd.
                     </Th>
                     <Th fontWeight="bold" fontSize="14px">
                       Data
-                    </Th>
-                    <Th fontWeight="bold" fontSize="14px">
-                      Fornecedor
                     </Th>
                     <Th></Th>
                   </Tr>
@@ -130,6 +158,7 @@ import { Box, Button, Flex, Input, Select, SimpleGrid, Table, Tbody, Td, Th, The
                   {listStockEntries.map((item, i) => (
                     <Tr key={i}>
                       <Td>{getProductById(item.product_id)}</Td>
+                      <Td>{getFornecedorById(item.fornecedor_id)}</Td>
                       <Td>{item.amount}</Td>
                       <Td>{item.data}</Td>
                       
